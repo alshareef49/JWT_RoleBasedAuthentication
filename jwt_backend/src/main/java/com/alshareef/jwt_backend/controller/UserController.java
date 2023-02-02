@@ -2,6 +2,7 @@ package com.alshareef.jwt_backend.controller;
 
 import com.alshareef.jwt_backend.entity.User;
 import com.alshareef.jwt_backend.service.UserService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,10 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @PostConstruct
+    public void initRolesAndUsers(){
+        userService.initRolesAndUser();
+    }
     @PostMapping({"/registerNewUser"})
     public User registerNewUser( @RequestBody User user){
         return userService.registerNewUser(user);
