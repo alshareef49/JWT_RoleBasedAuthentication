@@ -12,7 +12,7 @@
 	<artifactId>jwt_backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>jwt_backend</name>
-	<description>Project for Spring Boot authentification for different role</description>
+	<description>Project for Spring Boot authentication for different role</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -36,6 +36,19 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
