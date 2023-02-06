@@ -5,6 +5,7 @@ import com.alshareef.jwt_backend.entity.User;
 import com.alshareef.jwt_backend.repository.RoleRepository;
 import com.alshareef.jwt_backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -18,6 +19,9 @@ public class UserService {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public User registerNewUser(User user){
         return userRepository.save(user);
@@ -38,7 +42,7 @@ public class UserService {
         adminUser.setUserName("admin123");
         adminUser.setUserFirstName("admin");
         adminUser.setUserLastName("admin");
-        adminUser.setUserPassword("admin@123");
+        adminUser.setUserPassword(getEncodedPassword("admin@123"));
         Set<Role> adminRoles = new HashSet<>();
         adminRoles.add(adminRole);
         adminUser.setRole(adminRoles);
@@ -48,11 +52,15 @@ public class UserService {
         user.setUserFirstName("Shareef");
         user.setUserLastName("Ali");
         user.setUserName("shareef49");
-        user.setUserPassword("shareef@123");
+        user.setUserPassword(getEncodedPassword("shareef@123"));
         Set<Role> userRoles = new HashSet<>();
         userRoles.add(userRole);
         user.setRole(userRoles);
         userRepository.save(user);
 
+    }
+
+    public String getEncodedPassword(String password){
+        return passwordEncoder.encode(password);
     }
 }

@@ -1,7 +1,7 @@
 package com.alshareef.jwt_backend.entity;
 
-import jakarta.persistence.*;
 
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
